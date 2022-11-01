@@ -7,7 +7,7 @@ using System.Runtime.ConstrainedExecution;
 namespace AOQBIY_HFT_2022231.Models
 {
     [Table("Brands")]
-    public class Brand
+    public class Brand:Entity
     {
         [MaxLength(20)]
         [Required]
