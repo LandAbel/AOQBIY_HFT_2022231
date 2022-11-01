@@ -33,13 +33,19 @@ namespace AOQBIY_HFT_2022231.Models
         [NotNull]
         public double MaxTurboFrequency { get; set; }
 
-        public int Cache { get; set; }
+        public double Cache { get; set; }
 
         [NotNull]
         public bool IntegratedGraphics { get; set; }
 
+        [NotMapped] 
+        public virtual Brand Brand { get; set; }
+
         [ForeignKey(nameof(Brand))]
         public int BrandId { get; set; }
+
+        [NotMapped]
+        public virtual ICollection<Chipsets> Chipsets { get; set; }
 
         public override bool Equals(object obj)
         {
