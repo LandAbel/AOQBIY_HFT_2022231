@@ -1,5 +1,6 @@
 ﻿using AOQBIY_HFT_2022231.Models;
 using AOQBIY_HFT_2022231.Repository.Data;
+using AOQBIY_HFT_2022231.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
