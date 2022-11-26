@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AOQBIY_HFT_2022231.Models
@@ -19,6 +20,7 @@ namespace AOQBIY_HFT_2022231.Models
         [Required]
         public string Name { get; set; }
 
+        [JsonIgnore]
         [NotMapped]
         public virtual ICollection<Processor> Processors { get; set; }
 
