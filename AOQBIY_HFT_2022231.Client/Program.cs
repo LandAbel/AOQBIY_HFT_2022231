@@ -13,24 +13,24 @@ namespace AOQBIY_HFT_2022231.Client
         {
             if (entity == "Processor")
             {
-                List<Processor> champs = rest.Get<Processor>("processor");
-                foreach (var item in champs)
+                List<Processor> proce = rest.Get<Processor>("processor");
+                foreach (var item in proce)
                 {
                     Console.WriteLine(item.ProcessorId + "\t" + item.Name);
                 }
             }
             if (entity == "Chipsets")
             {
-                List<Chipsets> champs = rest.Get<Chipsets>("chipsets");
-                foreach (var item in champs)
+                List<Chipsets> chip = rest.Get<Chipsets>("chipsets");
+                foreach (var item in chip)
                 {
                     Console.WriteLine(item.ChipsetId + "\t" + item.Name);
                 }
             }
             if (entity == "Brand")
             {
-                List<Brand> champs = rest.Get<Brand>("brand");
-                foreach (var item in champs)
+                List<Brand> brand = rest.Get<Brand>("brand");
+                foreach (var item in brand)
                 {
                     Console.WriteLine(item.BrandId + "\t" + item.Name);
                 }
@@ -65,7 +65,7 @@ namespace AOQBIY_HFT_2022231.Client
         {
             if (entity == "Processor")
             {
-                Console.Write("Enter Champion's id to update:");
+                Console.Write("Enter Processor id to update:");
                 int id = int.Parse(Console.ReadLine());
                 Processor first = rest.Get<Processor>(id, "processor");
                 Console.Write($"New name [old: {first.Name}]: ");
@@ -104,7 +104,7 @@ namespace AOQBIY_HFT_2022231.Client
             }
             if (entity == "Chipsets")
             {
-                Console.WriteLine("Enter Lane's id to delete: ");
+                Console.WriteLine("Enter Chipsets id to delete: ");
                 int id = int.Parse(Console.ReadLine());
                 rest.Delete(id, "chipsets");
             }
