@@ -6,6 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AOQBIY_HFT_2022231.Models
@@ -38,12 +39,13 @@ namespace AOQBIY_HFT_2022231.Models
         [NotNull]
         public bool IntegratedGraphics { get; set; }
 
+        [JsonIgnore]
         [NotMapped] 
         public virtual Brand Brand { get; set; }
 
         [ForeignKey(nameof(Brand))]
         public int BrandId { get; set; }
-
+        [JsonIgnore]
         [NotMapped]
         public virtual Chipsets Chipset { get; set; }
 
@@ -66,6 +68,30 @@ namespace AOQBIY_HFT_2022231.Models
         public override int GetHashCode()
         {
             return HashCode.Combine(this.ProcessorId, this.Name);
+        }
+        public class ProcessorInfo
+        {
+            public string Brand { get; set; }
+            public double AvgCore { get; set; }
+            public int Number { get; set; }
+
+            public override bool Equals(object obj)
+            {
+                ProcessorInfo b = obj as ProcessorInfo;
+                if (b == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return this.Brand == b.Brand;
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(this.Brand, this.AvgCore, this.Number);
+            }
         }
     }
 }
