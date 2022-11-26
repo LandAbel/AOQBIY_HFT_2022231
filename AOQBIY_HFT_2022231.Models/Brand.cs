@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.ConstrainedExecution;
+using System.Text.Json.Serialization;
 
 namespace AOQBIY_HFT_2022231.Models
 {
@@ -17,6 +18,7 @@ namespace AOQBIY_HFT_2022231.Models
         [Required]
         public string Name { get; set; }
 
+        [JsonIgnore]
         [NotMapped]
         public virtual ICollection<Processor> Processors { get; set; }
 
