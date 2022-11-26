@@ -7,8 +7,12 @@ using System.Runtime.ConstrainedExecution;
 namespace AOQBIY_HFT_2022231.Models
 {
     [Table("Brands")]
-    public class Brand:Entity
+    public class Brand
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int BrandId { get; set; }
+
         [MaxLength(20)]
         [Required]
         public string Name { get; set; }

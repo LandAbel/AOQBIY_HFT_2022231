@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 namespace AOQBIY_HFT_2022231.Models
 {
     [Table("Processor")]
-    public class Processor:Entity
+    public class Processor
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("processor_id", TypeName = "int")]
-        public override int Id { get; set; }
+        public int ProcessorId { get; set; }
 
         [MaxLength(100)]
         [Required]
@@ -45,7 +45,10 @@ namespace AOQBIY_HFT_2022231.Models
         public int BrandId { get; set; }
 
         [NotMapped]
-        public virtual ICollection<Chipsets> Chipsets { get; set; }
+        public virtual Chipsets Chipset { get; set; }
+
+        [ForeignKey(nameof(Chipset))]
+        public int ChipsetId { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -56,13 +59,13 @@ namespace AOQBIY_HFT_2022231.Models
             }
             else
             {
-                return this.Id == b.Id && this.Name == b.Name;
+                return this.ProcessorId == b.ProcessorId && this.Name == b.Name;
             }
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.Id, this.Name);
+            return HashCode.Combine(this.ProcessorId, this.Name);
         }
     }
 }

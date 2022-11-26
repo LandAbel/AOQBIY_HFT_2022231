@@ -9,17 +9,26 @@ using System.Threading.Tasks;
 namespace AOQBIY_HFT_2022231.Models
 {
     [Table("Chipset")]
-    public class Chipsets:Entity
+    public class Chipsets
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ChipsetId { get; set; }
+
         [MaxLength(20)]
         [Required]
         public string Name { get; set; }
 
         [NotMapped]
-        public virtual Processor Processor { get; set; }
+        public virtual ICollection<Processor> Processors { get; set; }
 
-        [ForeignKey(nameof(Processor))]
-        public int ProcessorId { get; set; }
+        public Chipsets()
+        {
+            this.Processors = new HashSet<Processor>();
+        }
+
+/*        [ForeignKey(nameof(Processor))]
+        public int ProcessorId { get; set; }*/
 
     }
 }
