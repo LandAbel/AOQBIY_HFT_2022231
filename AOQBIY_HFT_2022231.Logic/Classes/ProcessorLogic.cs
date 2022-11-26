@@ -59,6 +59,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                      where x.Chipset.Name.Equals("Z790") && (x.PerformanceCores + x.EfficencyCores) > 10
                      select new Processor()
                      {
+                         ProcessorId = x.ProcessorId,
                          BrandId = x.BrandId,
                          Name = x.Name,
                          PerformanceCores = x.PerformanceCores,
@@ -75,6 +76,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                    where x.Brand.Name.Equals("INTEL") && x.Cache >= 30
                    select new Processor()
                    {
+                       ProcessorId = x.ProcessorId,
                        BrandId = x.BrandId,
                        Name = x.Name,
                        PerformanceCores = x.PerformanceCores,
@@ -91,6 +93,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                    where x.Brand.Name.Equals("INTEL") && x.IntegratedGraphics == true
                    select new Processor()
                    {
+                       ProcessorId = x.ProcessorId,
                        BrandId = x.BrandId,
                        Name = x.Name,
                        PerformanceCores = x.PerformanceCores,
@@ -108,6 +111,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                    where x.Brand.Name.Equals("AMD") && x.MaxTurboFrequency >= 4.9
                    select new Processor()
                    {
+                       ProcessorId = x.ProcessorId,
                        BrandId = x.BrandId,
                        Name = x.Name,
                        PerformanceCores = x.PerformanceCores,
@@ -125,6 +129,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                    where x.Brand.Name.Equals("QUALCOMM") && x.PerformanceCores > 6
                    select new Processor()
                    {
+                       ProcessorId = x.ProcessorId,
                        BrandId = x.BrandId,
                        Name = x.Name,
                        PerformanceCores = x.PerformanceCores,
@@ -141,6 +146,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                    where x.Brand.Name.Equals("INTEL") && x.TotalThreads > 30
                    select new Processor()
                    {
+                       ProcessorId = x.ProcessorId,
                        BrandId = x.BrandId,
                        Name = x.Name,
                        PerformanceCores = x.PerformanceCores,

@@ -25,8 +25,8 @@ namespace AOQBIY_HFT_2022231.Test
         [SetUp]
         public void Initialize()
         {
-            Brand AMD = new Brand() { BrandId = 1, Name = "AMD" };
-            Brand INTEL = new Brand() { BrandId = 2, Name = "INTEL" };
+            Brand AMD = new Brand() { BrandId = 2, Name = "AMD" };
+            Brand INTEL = new Brand() { BrandId = 1, Name = "INTEL" };
             Brand QUALCOMM = new Brand() { BrandId = 3, Name = "QUALCOMM" };
             var brands = new List<Brand>() { INTEL, AMD, QUALCOMM }.AsQueryable(); 
 
@@ -105,7 +105,7 @@ namespace AOQBIY_HFT_2022231.Test
                 new Processor() { BrandId=1,ProcessorId = 2,PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.5, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-12900KS Processor" },
                 new Processor() { BrandId=1,ProcessorId = 3, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-13700K" },
                 new Processor() { BrandId = 1,ProcessorId=4,PerformanceCores = 8, EfficencyCores = 4, TotalThreads = 20, MaxTurboFrequency = 5.0, Cache = 25, IntegratedGraphics = true, Name = "Intel Core i9-12700K Processor" },
-            };
+            }.AsQueryable();
             Assert.AreEqual(result, expected);
         }
         [Test]
