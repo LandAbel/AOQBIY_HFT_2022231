@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AOQBIY_HFT_2022231.Repository.Repos
 {
-    public class Repository<T>:IRepository<T> where T:Entity
+    public abstract class Repository<T> : IRepository<T> where T : class
     {
         protected ProcessorListDbContext ctx;
 
@@ -30,24 +30,12 @@ namespace AOQBIY_HFT_2022231.Repository.Repos
             ctx.SaveChanges();
         }
 
-        public virtual T Read(int id)
-        {
-            return ctx.Set<T>().FirstOrDefault(item => item.Id == id);
-        }
-
         public IQueryable<T> ReadAll()
         {
             return ctx.Set<T>();
         }
+        public abstract T Read(int id);
 
-        public virtual void Update(T item)
-        {
-            var old = Read(item.Id);
-            foreach (var prop in old.GetType().GetProperties())
-            {
-                prop.SetValue(old, prop.GetValue(item));
-            }
-            ctx.SaveChanges();
-        }
+        public abstract void Update(T item);
     }
 }

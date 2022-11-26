@@ -10,15 +10,27 @@ using System.Threading.Tasks;
 
 namespace AOQBIY_HFT_2022231.Repository.Repos
 {
-    public class ProcessorRepository:Repository<Processor>, IProcessorRepository
+    public class ProcessorRepository:Repository<Processor>, IRepository<Processor>
     {
         public ProcessorRepository(ProcessorListDbContext ctx) : base(ctx)
         {
         }
-        public void UpdateMaxTurboFrequency(int id, int newMaxFreq)
+
+        public override Processor Read(int id)
         {
-            Processor old = Read(id);
-            old.MaxTurboFrequency = newMaxFreq;
+            return ctx.Processors.FirstOrDefault(t => t.ProcessorId == id);
+        }
+
+        public override void Update(Processor item)
+        {
+            var old = Read(item.ProcessorId);
+            foreach (var prop in old.GetType().GetProperties())
+            {
+                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    prop.SetValue(old, prop.GetValue(item));
+                }
+            }
             ctx.SaveChanges();
         }
     }
