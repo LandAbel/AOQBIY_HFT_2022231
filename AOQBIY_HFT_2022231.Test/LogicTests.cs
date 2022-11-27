@@ -76,9 +76,9 @@ namespace AOQBIY_HFT_2022231.Test
             var result = ProLogic.z790ProcessorsWith10Core();
             var expected = new List<Processor>()
             {
-                new Processor() { BrandId=1,ProcessorId = 1, PerformanceCores = 8, EfficencyCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.8, Cache = 36, IntegratedGraphics = true, Name = "Intel Core i9-13900K" },
-                new Processor() { BrandId=1,ProcessorId = 3, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-13700K" },
-                new Processor() { BrandId=1,ProcessorId =5, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = false, Name = "Intel Core i9-13700KF" },
+                new Processor() { BrandId=1,ChipsetId=1,ProcessorId = 1, PerformanceCores = 8, EfficencyCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.8, Cache = 36, IntegratedGraphics = true, Name = "Intel Core i9-13900K" },
+                new Processor() { BrandId=1,ChipsetId=1,ProcessorId = 3, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-13700K" },
+                new Processor() { BrandId=1,ChipsetId=1,ProcessorId =5, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = false, Name = "Intel Core i9-13700KF" },
             }.AsQueryable();
             Assert.AreEqual(expected, result);
         }
@@ -88,10 +88,10 @@ namespace AOQBIY_HFT_2022231.Test
             var result=ProLogic.INTELProcessorsWithMorethan30mbCache();
             var expected = new List<Processor>()
             {
-                new Processor() {BrandId=1, ProcessorId = 1, PerformanceCores = 8, EfficencyCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.8, Cache = 36, IntegratedGraphics = true, Name = "Intel Core i9-13900K" },
-                new Processor() { BrandId=1,ProcessorId = 2,PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.5, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-12900KS Processor" },
-                new Processor() { BrandId=1,ProcessorId = 3, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-13700K" },
-                new Processor() { BrandId=1,ProcessorId = 5, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = false, Name = "Intel Core i9-13700KF" },
+                new Processor() {BrandId=1,ChipsetId=1, ProcessorId = 1, PerformanceCores = 8, EfficencyCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.8, Cache = 36, IntegratedGraphics = true, Name = "Intel Core i9-13900K" },
+                new Processor() { BrandId=1,ChipsetId = 2, ProcessorId = 2,PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.5, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-12900KS Processor" },
+                new Processor() { BrandId=1,ChipsetId = 1, ProcessorId = 3, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-13700K" },
+                new Processor() { BrandId=1,ChipsetId = 1, ProcessorId = 5, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = false, Name = "Intel Core i9-13700KF" },
             }.AsQueryable();
             Assert.AreEqual(result, expected);
         }
@@ -101,10 +101,10 @@ namespace AOQBIY_HFT_2022231.Test
             var result=ProLogic.INTELProcessorsWithIntegratedGraph();
             var expected = new List<Processor>()
             {
-                new Processor() {BrandId=1, ProcessorId = 1, PerformanceCores = 8, EfficencyCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.8, Cache = 36, IntegratedGraphics = true, Name = "Intel Core i9-13900K" },
-                new Processor() { BrandId=1,ProcessorId = 2,PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.5, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-12900KS Processor" },
-                new Processor() { BrandId=1,ProcessorId = 3, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-13700K" },
-                new Processor() { BrandId = 1,ProcessorId=4,PerformanceCores = 8, EfficencyCores = 4, TotalThreads = 20, MaxTurboFrequency = 5.0, Cache = 25, IntegratedGraphics = true, Name = "Intel Core i9-12700K Processor" },
+                new Processor() {BrandId=1, ChipsetId = 1, ProcessorId = 1, PerformanceCores = 8, EfficencyCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.8, Cache = 36, IntegratedGraphics = true, Name = "Intel Core i9-13900K" },
+                new Processor() { BrandId=1,ChipsetId = 2, ProcessorId = 2,PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.5, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-12900KS Processor" },
+                new Processor() { BrandId=1,ChipsetId = 1, ProcessorId = 3, PerformanceCores = 8, EfficencyCores = 8, TotalThreads = 24, MaxTurboFrequency = 5.4, Cache = 30, IntegratedGraphics = true, Name = "Intel Core i9-13700K" },
+                new Processor() { BrandId = 1,ChipsetId = 2, ProcessorId=4,PerformanceCores = 8, EfficencyCores = 4, TotalThreads = 20, MaxTurboFrequency = 5.0, Cache = 25, IntegratedGraphics = true, Name = "Intel Core i9-12700K Processor" },
             }.AsQueryable();
             Assert.AreEqual(result, expected);
         }
@@ -114,8 +114,8 @@ namespace AOQBIY_HFT_2022231.Test
             var result = ProLogic.MaxTurboFreqMoreThen49ProcessorFromAMD();
             var expected = new List<Processor>()
             {
-                new Processor() { ProcessorId = 6,BrandId=2,PerformanceCores = 16, TotalThreads = 32, MaxTurboFrequency = 4.9, Cache = 72, IntegratedGraphics = false, Name = "AMD Ryzen 9 5950X" },
-                new Processor() { ProcessorId = 7,BrandId=2,PerformanceCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.7, Cache = 81, IntegratedGraphics = false, Name = "AMD Ryzen 9 7950X" },
+                new Processor() { ProcessorId = 6,ChipsetId=8,BrandId=2,PerformanceCores = 16, TotalThreads = 32, MaxTurboFrequency = 4.9, Cache = 72, IntegratedGraphics = false, Name = "AMD Ryzen 9 5950X" },
+                new Processor() { ProcessorId = 7,ChipsetId=9,BrandId=2,PerformanceCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.7, Cache = 81, IntegratedGraphics = false, Name = "AMD Ryzen 9 7950X" },
             }.AsQueryable();
             ;
             Assert.AreEqual(result, expected);
@@ -126,7 +126,7 @@ namespace AOQBIY_HFT_2022231.Test
             var result = ProLogic.MobileProcessorsWithMoreThan6Core();
             var expected = new List<Processor>()
             {
-                new Processor() { ProcessorId = 9, BrandId = 3, PerformanceCores = 8, TotalThreads = 8, MaxTurboFrequency = 2.84, Cache = 6.8, IntegratedGraphics = true, Name = "Snapdragon 865 5G" },
+                new Processor() { ProcessorId = 9,ChipsetId=10, BrandId = 3, PerformanceCores = 8, TotalThreads = 8, MaxTurboFrequency = 2.84, Cache = 6.8, IntegratedGraphics = true, Name = "Snapdragon 865 5G" },
             };
             Assert.AreEqual(result, expected);
         }
@@ -136,7 +136,7 @@ namespace AOQBIY_HFT_2022231.Test
             var result = ProLogic.IntelProcessorsWithMoreTh30Threads();
             var expected = new List<Processor>()
             {
-                new Processor() { BrandId=1,ProcessorId = 1, PerformanceCores = 8, EfficencyCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.8, Cache = 36, IntegratedGraphics = true, Name = "Intel Core i9-13900K" },
+                new Processor() { BrandId=1,ProcessorId = 1,ChipsetId=1, PerformanceCores = 8, EfficencyCores = 16, TotalThreads = 32, MaxTurboFrequency = 5.8, Cache = 36, IntegratedGraphics = true, Name = "Intel Core i9-13900K" },
             };
             Assert.AreEqual(result, expected);
         }

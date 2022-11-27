@@ -68,6 +68,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                          MaxTurboFrequency=x.MaxTurboFrequency,
                          Cache=x.Cache,
                          TotalThreads=x.TotalThreads,
+                         ChipsetId = x.ChipsetId,
                      };
         }
         public IEnumerable<Processor> INTELProcessorsWithMorethan30mbCache()
@@ -85,6 +86,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                        MaxTurboFrequency = x.MaxTurboFrequency,
                        Cache = x.Cache,
                        TotalThreads = x.TotalThreads,
+                       ChipsetId = x.ChipsetId,
                    };
         }
         public IEnumerable<Processor> INTELProcessorsWithIntegratedGraph()
@@ -102,7 +104,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                        MaxTurboFrequency = x.MaxTurboFrequency,
                        Cache = x.Cache,
                        TotalThreads = x.TotalThreads,
-
+                       ChipsetId = x.ChipsetId,
                    };
         }
         public IEnumerable<Processor> MaxTurboFreqMoreThen49ProcessorFromAMD()
@@ -120,7 +122,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                        MaxTurboFrequency = x.MaxTurboFrequency,
                        Cache = x.Cache,
                        TotalThreads = x.TotalThreads,
-
+                       ChipsetId = x.ChipsetId,
                    };
         }
         public IEnumerable<Processor> MobileProcessorsWithMoreThan6Core()
@@ -138,6 +140,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                        MaxTurboFrequency = x.MaxTurboFrequency,
                        Cache = x.Cache,
                        TotalThreads = x.TotalThreads,
+                       ChipsetId = x.ChipsetId,
                    };
         }
         public IEnumerable<Processor> IntelProcessorsWithMoreTh30Threads()
@@ -146,6 +149,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
                    where x.Brand.Name.Equals("INTEL") && x.TotalThreads > 30
                    select new Processor()
                    {
+                       ChipsetId= x.ChipsetId,
                        ProcessorId = x.ProcessorId,
                        BrandId = x.BrandId,
                        Name = x.Name,
