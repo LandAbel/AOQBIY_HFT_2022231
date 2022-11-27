@@ -14,14 +14,15 @@ namespace AOQBIY_HFT_2022231.Client
             if (entity == "Processor")
             {
                 List<Processor> proce = rest.Get<Processor>("processor");
+                Console.WriteLine("ID \t Name \t\t Performance Cores \t Total Threads \t Max Turbo Frequency");
                 foreach (var item in proce)
                 {
-                    Console.WriteLine(item.ProcessorId + "\t" + item.Name);
+                    Console.WriteLine(item.ProcessorId + "\t" + item.Name +"\t" +item.PerformanceCores + "\t\t\t" + item.TotalThreads + "\t\t" + item.MaxTurboFrequency);
                 }
             }
-            if (entity == "Chipsets")
+            if (entity == "Chipset")
             {
-                List<Chipsets> chip = rest.Get<Chipsets>("chipsets");
+                List<Chipsets> chip = rest.Get<Chipsets>("chipset");
                 foreach (var item in chip)
                 {
                     Console.WriteLine(item.ChipsetId + "\t" + item.Name);
@@ -43,14 +44,20 @@ namespace AOQBIY_HFT_2022231.Client
             {
                 Console.Write("Enter Processor Name:");
                 string name = Console.ReadLine();
-                rest.Post(new Processor() { Name = name }, "processor");
+                Console.Write("Enter Processor PerformanceCores:");
+                double Pcores = double.Parse(Console.ReadLine());
+                Console.Write("Enter Processor TotalThreads:");
+                int TTH = int.Parse(Console.ReadLine());
+                Console.Write("Enter Processor MaxTurboFrequency:");
+                double MTF = double.Parse(Console.ReadLine());
+                rest.Post(new Processor() { Name = name, PerformanceCores=Pcores,TotalThreads=TTH,MaxTurboFrequency=MTF }, "processor");
 
             }
-            if (entity == "Chipsets")
+            if (entity == "Chipset")
             {
-                Console.Write("Enter Chipsets Name:");
+                Console.Write("Enter Chipset's Name:");
                 string name = Console.ReadLine();
-                rest.Post(new Chipsets() { Name = name }, "chipsets");
+                rest.Post(new Chipsets() { Name = name }, "chipset");
 
             }
             if (entity == "Brand")
@@ -73,15 +80,15 @@ namespace AOQBIY_HFT_2022231.Client
                 first.Name = name;
                 rest.Put(first, "processor");
             }
-            if (entity == "Chipsets")
+            if (entity == "Chipset")
             {
-                Console.Write("Enter Chipsets id to update:");
+                Console.Write("Enter Chipset's id to update:");
                 int id = int.Parse(Console.ReadLine());
-                Chipsets first = rest.Get<Chipsets>(id, "chipsets");
+                Chipsets first = rest.Get<Chipsets>(id, "chipset");
                 Console.Write($"New name [old: {first.Name}]: ");
                 string name = Console.ReadLine();
                 first.Name = name;
-                rest.Put(first, "chipsets");
+                rest.Put(first, "chipset");
             }
             if (entity == "Brand")
             {
@@ -102,11 +109,11 @@ namespace AOQBIY_HFT_2022231.Client
                 int id = int.Parse(Console.ReadLine());
                 rest.Delete(id, "processor");
             }
-            if (entity == "Chipsets")
+            if (entity == "Chipset")
             {
-                Console.WriteLine("Enter Chipsets id to delete: ");
+                Console.WriteLine("Enter Chipset's id to delete: ");
                 int id = int.Parse(Console.ReadLine());
-                rest.Delete(id, "chipsets");
+                rest.Delete(id, "chipset");
             }
             if (entity == "Brand")
             {
@@ -128,10 +135,10 @@ namespace AOQBIY_HFT_2022231.Client
                 .Add("Exit", ConsoleMenu.Close);
 
             var ChipsetsSubMenu = new ConsoleMenu(args, level: 1)
-               .Add("List", () => List("Chipsets"))
-                .Add("Create", () => Create("Chipsets"))
-                .Add("Delete", () => Delete("Chipsets"))
-                .Add("Update", () => Update("Chipsets"))
+               .Add("List", () => List("Chipset"))
+                .Add("Create", () => Create("Chipset"))
+                .Add("Delete", () => Delete("Chipset"))
+                .Add("Update", () => Update("Chipset"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var BrandSubMenu = new ConsoleMenu(args, level: 1)
