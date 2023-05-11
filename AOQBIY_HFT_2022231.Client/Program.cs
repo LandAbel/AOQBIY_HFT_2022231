@@ -22,7 +22,7 @@ namespace AOQBIY_HFT_2022231.Client
             }
             if (entity == "Chipset")
             {
-                List<Chipsets> chip = rest.Get<Chipsets>("chipset");
+                List<Chipset> chip = rest.Get<Chipset>("chipset");
                 foreach (var item in chip)
                 {
                     Console.WriteLine(item.ChipsetId + "\t" + item.Name);
@@ -57,7 +57,7 @@ namespace AOQBIY_HFT_2022231.Client
             {
                 Console.Write("Enter Chipset's Name:");
                 string name = Console.ReadLine();
-                rest.Post(new Chipsets() { Name = name }, "chipset");
+                rest.Post(new Chipset() { Name = name }, "chipset");
 
             }
             if (entity == "Brand")
@@ -84,7 +84,7 @@ namespace AOQBIY_HFT_2022231.Client
             {
                 Console.Write("Enter Chipset's id to update:");
                 int id = int.Parse(Console.ReadLine());
-                Chipsets first = rest.Get<Chipsets>(id, "chipset");
+                Chipset first = rest.Get<Chipset>(id, "chipset");
                 Console.Write($"New name [old: {first.Name}]: ");
                 string name = Console.ReadLine();
                 first.Name = name;
@@ -158,7 +158,7 @@ namespace AOQBIY_HFT_2022231.Client
                 .Add("Exit", ConsoleMenu.Close);
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Processor", () => ProcessorSubMenu.Show())
-                .Add("Chipsets", () => ChipsetsSubMenu.Show())
+                .Add("Chipset", () => ChipsetsSubMenu.Show())
                 .Add("Brand", () => BrandSubMenu.Show())
                 .Add("Data Statistics",()=>DataStatisticsSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
