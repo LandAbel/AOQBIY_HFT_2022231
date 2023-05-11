@@ -1,0 +1,506 @@
+﻿<Window x:Class="AOQBIY_HFT_202231.WPFClient.MainWindow2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AOQBIY_HFT_202231.WPFClient"
+        mc:Ignorable="d"
+        Title="Processor Database" Height="500" Width="800" Background="#FFFFFCFC" BorderBrush="Black" Foreground="#FFC5BABA" FontFamily="Arial" Icon="/AppIcon.png">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Effect>
+        <DropShadowEffect/>
+    </Window.Effect>
+    <Window.Resources>
+        <Style x:Key="CustomHeaderStyle" TargetType="GridViewColumnHeader">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <!-- Add more setters as per your customization needs -->
+        </Style>
+    </Window.Resources>
+
+    <!--#region WINDOW ELEMENTS -->
+    <Grid>
+        <TabControl>
+            <!--#region TAB STYLE -->
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding}" FontFamily="Arial" FontWeight="Bold" FontSize="16" Height="20" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <!--#endregion-->
+            
+            <!--#region Processor Database Page -->
+            <TabItem Header="Processor" Background="LightBlue">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Grid.Column="0" Grid.ColumnSpan="1" ItemsSource="{Binding Processors}" SelectedItem="{Binding SelectedProcessor}" Background="#FFC5BABA" BorderBrush="Black" Foreground="Black" Margin="0,0,0,0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Column="2" Grid.ColumnSpan="1">
+                        <Label Content="Name of the processor" Background="#FFD7E6AD" Padding="10" BorderBrush="Black" />
+                        <TextBox Text="{Binding SelectedProcessor.Name}" Padding="10" Margin="0,0,0,30" Background="White" BorderBrush="Black"/>
+                        <!--<Label Content="Number of the Performance Cores" Background="LightBlue" Padding="10"/>-->
+                        <Label Padding="10" Background="#FFD7E6AD" BorderBrush="Black">
+                            <Label.Content>
+                                <TextBlock>
+                                    <Run Text="Number of the Performance Cores in "/>
+                                    <Run Text="{Binding SelectedProcessor.Name}"/>
+                                </TextBlock>
+                            </Label.Content>
+                        </Label>
+                        <TextBox Text="{Binding SelectedProcessor.PerformanceCores}" Padding="10" Margin="0,0,0,30" Background="White" BorderBrush="Black"/>
+                        <!--<Label Content="{Binding SelectedProcessor.Name, StringFormat={}{0:F0}Max Turbo Frequency }" Background="LightBlue" Padding="10"/>-->
+                        <Label Padding="10" Background="#FFD7E6AD" BorderBrush="Black">
+                            <Label.Content>
+                                <TextBlock>
+                        <Run Text="Max Turbo Frequency of "/>
+                        <Run Text="{Binding SelectedProcessor.Name}"/>
+                                </TextBlock>
+                            </Label.Content>
+                        </Label>
+                        <TextBox Text="{Binding SelectedProcessor.MaxTurboFrequency, StringFormat={}{0:F1}}" Padding="10" Margin="0,0,0,30" Background="White" BorderBrush="Black"/>
+                        <Button Content="Create Processor" Command="{Binding CreateProcessorCommand}" Margin="5" Padding="10" Background="#FF2ABBA4"/>
+                        <Button Content="Delete Processor" Command="{Binding DeleteProcessorCommand}" Margin="5" Padding="10" Background="#FF2ABBA4"/>
+                        <Button Content="Update Processor" Command="{Binding UpdateProcessorCommand}" Margin="5" Padding="10" Background="#FF2ABBA4"/>
+                        <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <!--#endregion-->
+
+            <!--#region Brand Database Page -->
+            <TabItem Header="Brand" Background="LightPink">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Grid.Column="0" ItemsSource="{Binding Brands}" SelectedItem="{Binding SelectedBrand}" Background="#FFC5BABA">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Column="1">
+                        <Label Content="Name of the brand" Background="LightBlue" Padding="10"/>
+                        <TextBox Text="{Binding SelectedBrand.Name}" Padding="10" Margin="0,0,0,30"/>
+                        <Button Content="Create Brand" Command="{Binding CreateBrandCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
+                        <Button Content="Delete Brand" Command="{Binding DeleteBrandCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
+                        <Button Content="Update Brand" Command="{Binding UpdateBrandCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
+                        <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <!--#endregion-->
+
+            <!--#region Chipset Database Page -->
+            <TabItem Header="Chipset" Background="LightGreen">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox Grid.Column="0" ItemsSource="{Binding ChipsetsColl}" SelectedItem="{Binding SelectedChipsetsColl}" Background="#FFC5BABA">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Column="1">
+                        <Label Content="Name of the chipsets" Background="LightBlue" Padding="10"/>
+                        <TextBox Text="{Binding SelectedChipsetsColl.Name}" Padding="10" Margin="0,0,0,30"/>
+                        <Button Content="Create Chipset" Command="{Binding CreateChipsetsCollCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
+                        <Button Content="Delete Chipset" Command="{Binding DeleteChipsetsCollCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
+                        <Button Content="Update Chipset" Command="{Binding UpdateChipsetsCollCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
+                        <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <!--#endregion-->
+
+            <!--#region NON CRUD Pages -->
+            <TabItem Header="Statistics">
+                <TabControl>
+                    <!--#region Style -->
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Statistics" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
+                    <!--#endregion-->
+                    
+                    <!--#region Z790 Intel NON CRUD Page -->
+                    <TabItem Header="Z790 Intel">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Content="START" Padding="10" Command="{Binding NONCRUDSTART1Command}" Grid.Column="1" Height="40" Width="100" Background="#FF2ABBA4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ListView x:Name="noncurdlista1" Margin="50,50,0,30" ItemsSource="{Binding collection1}" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFCDCDCD" HorizontalAlignment="Left" BorderBrush="Black" FontFamily="Arial" Foreground="Black" Width="450" Grid.ColumnSpan="2">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" Width="150" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Performance Core" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding PerformanceCores}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Max Turbo Frequeny" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding MaxTurboFrequency, StringFormat={}{0:F1} GHz}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+                    <!--#endregion-->
+
+                    <!--#region Intel +30mb cache NON CRUD Page -->
+                    <TabItem Header="Intel with +30Mb">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Content="START" Padding="10" Command="{Binding NONCRUDSTART2Command}" Grid.Column="1" Height="40" Width="100" Background="#FF2ABBA4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ListView x:Name="noncurdlista2" Margin="50,50,0,30" ItemsSource="{Binding collection2}" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFCDCDCD" HorizontalAlignment="Left" BorderBrush="Black" FontFamily="Arial" Foreground="Black" Width="450" Grid.ColumnSpan="2">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" Width="150" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Performance Core" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding PerformanceCores}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Max Turbo Frequeny" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding MaxTurboFrequency, StringFormat={}{0:F1} GHz}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+                    <!--#endregion-->
+
+                    <!--#region Intel with Integrated NON CRUD Page -->
+                    <TabItem Header="Intel with Integrated">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Content="START" Padding="10" Command="{Binding NONCRUDSTART3Command}" Grid.Column="1" Height="40" Width="100" Background="#FF2ABBA4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ListView x:Name="noncurdlista3" Margin="50,50,0,30" ItemsSource="{Binding collection3}" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFCDCDCD" HorizontalAlignment="Left" BorderBrush="Black" FontFamily="Arial" Foreground="Black" Width="450" Grid.ColumnSpan="2">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" Width="150" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Performance Core" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding PerformanceCores}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Max Turbo Frequeny" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding MaxTurboFrequency, StringFormat={}{0:F1} GHz}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+                    <!--#endregion-->
+                    
+                    <!--#region AMD with 4.9+ Max Turbo NON CRUD Page -->
+                    <TabItem Header="AMD with 4.9+ Max Turbo">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Content="START" Padding="10" Command="{Binding NONCRUDSTART4Command}" Grid.Column="1" Height="40" Width="100" Background="#FF2ABBA4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ListView x:Name="noncurdlista4" Margin="50,50,0,30" ItemsSource="{Binding collection4}" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFCDCDCD" HorizontalAlignment="Left" BorderBrush="Black" FontFamily="Arial" Foreground="Black" Width="450" Grid.ColumnSpan="2">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" Width="150" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Performance Core" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding PerformanceCores}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Max Turbo Frequeny" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding MaxTurboFrequency, StringFormat={}{0:F1} GHz}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+                    <!--#endregion-->
+                    
+                    <!--#region 6+ core Mobile NON CRUD Page -->
+                    <TabItem Header="6+ core Mobile">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Content="START" Padding="10" Command="{Binding NONCRUDSTART5Command}" Grid.Column="1" Height="40" Width="100" Background="#FF2ABBA4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ListView x:Name="noncurdlista5" Margin="50,50,0,30" ItemsSource="{Binding collection5}" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFCDCDCD" HorizontalAlignment="Left" BorderBrush="Black" FontFamily="Arial" Foreground="Black" Width="450" Grid.ColumnSpan="2">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" Width="150" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Performance Core" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding PerformanceCores}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Max Turbo Frequeny" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding MaxTurboFrequency, StringFormat={}{0:F1} GHz}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+                    <!--#endregion-->
+                    
+                    <!--#region Intel With 30+ thread NON CRUD Page -->
+                    <TabItem Header="Intel with 30+ Thread">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Content="START" Padding="10" Command="{Binding NONCRUDSTART6Command}" Grid.Column="1" Height="40" Width="100" Background="#FF2ABBA4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ListView x:Name="noncurdlista6" Margin="50,50,0,30" ItemsSource="{Binding collection6}" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFCDCDCD" HorizontalAlignment="Left" BorderBrush="Black" FontFamily="Arial" Foreground="Black" Width="450" Grid.ColumnSpan="2">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" Width="150" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Performance Core" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding PerformanceCores}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Max Turbo Frequeny" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding MaxTurboFrequency, StringFormat={}{0:F1} GHz}"
+                                   HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+                    <!--#endregion-->
+                    
+                    <!--#region Brand Statistics NON CRUD Page -->
+                    <TabItem Header="Brand Statistics">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0" Content="START" Padding="10" Command="{Binding NONCRUDSTART7Command}" Grid.Column="1" Height="40" Width="100" Background="#FF2ABBA4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                            <ListView x:Name="stats"  Margin="50,50,0,30" ItemsSource="{Binding collection7}" Grid.Column="0" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFCDCDCD" Foreground="Black" FontFamily="Arial" HorizontalAlignment="Left" HorizontalContentAlignment="Center" BorderBrush="#FF000205" Width="450">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Brand" Width="150" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Brand}"
+                                   HorizontalAlignment="Left"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Average Core" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding AvgCore, StringFormat={}{0:F1}}"
+                                   HorizontalAlignment="Left"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Number of Processor" Width="145" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Number}"
+                                   HorizontalAlignment="Right"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
+                    <!--#endregion-->
+                </TabControl>
+            </TabItem>
+        </TabControl>
+        <!--#endregion-->
+    </Grid>
+    <!--#endregion-->
+</Window>
