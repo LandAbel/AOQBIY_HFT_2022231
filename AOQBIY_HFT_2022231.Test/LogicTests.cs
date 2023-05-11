@@ -20,7 +20,7 @@ namespace AOQBIY_HFT_2022231.Test
         ChipsetLogic ChipsetLogic;
         Mock<IRepository<Processor>> mockProcRepo;
         Mock<IRepository<Brand>> mockBrandRepo;
-        Mock<IRepository<Chipsets>> mockChipsetsRepo;
+        Mock<IRepository<Chipset>> mockChipsetsRepo;
 
         [SetUp]
         public void Initialize()
@@ -30,13 +30,13 @@ namespace AOQBIY_HFT_2022231.Test
             Brand QUALCOMM = new Brand() { BrandId = 3, Name = "QUALCOMM" };
             var brands = new List<Brand>() { INTEL, AMD, QUALCOMM }.AsQueryable(); 
 
-            Chipsets Z790 = new Chipsets() {ChipsetId = 1, Name = "Z790" };
-            Chipsets Z690 = new Chipsets() { ChipsetId = 2, Name = "Z690" };
-            Chipsets AM4 = new Chipsets() { ChipsetId = 8, Name = "AM4" };
-            Chipsets AM5 = new Chipsets() { ChipsetId = 9, Name = "AM5" };
-            Chipsets Mobile = new Chipsets() { ChipsetId = 10, Name = "Mobile" };
+            Chipset Z790 = new Chipset() {ChipsetId = 1, Name = "Z790" };
+            Chipset Z690 = new Chipset() { ChipsetId = 2, Name = "Z690" };
+            Chipset AM4 = new Chipset() { ChipsetId = 8, Name = "AM4" };
+            Chipset AM5 = new Chipset() { ChipsetId = 9, Name = "AM5" };
+            Chipset Mobile = new Chipset() { ChipsetId = 10, Name = "Mobile" };
 
-            var chipsets = new List<Chipsets>()
+            var chipsets = new List<Chipset>()
             {
                 Z790,
                 Z690,
@@ -65,7 +65,7 @@ namespace AOQBIY_HFT_2022231.Test
             mockBrandRepo.Setup(x => x.ReadAll()).Returns(brands);
             BrandLogic = new BrandLogic(mockBrandRepo.Object);
 
-            mockChipsetsRepo = new Mock<IRepository<Chipsets>>();
+            mockChipsetsRepo = new Mock<IRepository<Chipset>>();
             mockChipsetsRepo.Setup(x => x.ReadAll()).Returns(chipsets);
             ChipsetLogic = new ChipsetLogic(mockChipsetsRepo.Object);
         }

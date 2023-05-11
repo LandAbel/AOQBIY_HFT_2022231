@@ -38,7 +38,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
             var proc = repository.Read(id);
             if (proc == null)
             {
-                throw new ArgumentException("****There is no sudc processor!****");
+                throw new ArgumentException("****There is no such processor!****");
             }
             return proc;
         }

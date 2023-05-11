@@ -11,12 +11,12 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
 {
     public class ChipsetLogic : IChipsetLogic
     {
-        IRepository<Chipsets> repository;
-        public ChipsetLogic(IRepository<Chipsets> repo)
+        IRepository<Chipset> repository;
+        public ChipsetLogic(IRepository<Chipset> repo)
         {
             this.repository = repo;
         }
-        public void Create(Chipsets item)
+        public void Create(Chipset item)
         {
             this.repository.Create(item);
         }
@@ -26,7 +26,7 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
             this.repository.Delete(id);
         }
 
-        public Chipsets Read(int id)
+        public Chipset Read(int id)
         {
             var chip = repository.Read(id);
             if (chip == null)
@@ -36,12 +36,12 @@ namespace AOQBIY_HFT_2022231.Logic.Classes
             return chip;
         }
 
-        public IEnumerable<Chipsets> ReadAll()
+        public IEnumerable<Chipset> ReadAll()
         {
             return this.repository.ReadAll();
         }
 
-        public void Update(Chipsets item)
+        public void Update(Chipset item)
         {
             this.repository.Update(item);
         }

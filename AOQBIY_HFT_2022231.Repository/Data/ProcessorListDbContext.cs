@@ -14,7 +14,7 @@ namespace AOQBIY_HFT_2022231.Repository.Data
     {
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Processor> Processors { get; set; }
-        public virtual DbSet<Chipsets> Chipsets { get; set; }
+        public virtual DbSet<Chipset> Chipsets { get; set; }
 
         public ProcessorListDbContext()
         {
@@ -61,18 +61,18 @@ namespace AOQBIY_HFT_2022231.Repository.Data
                 new Brand() { BrandId = 3, Name = "QUALCOMM" },
 
             });
-            modelBuilder.Entity<Chipsets>().HasData(new Chipsets[]
+            modelBuilder.Entity<Chipset>().HasData(new Chipset[]
             {
-                new Chipsets() { ChipsetId = 1, Name = "Z790" },
-                new Chipsets() { ChipsetId = 2, Name = "Z690" },
-                new Chipsets() { ChipsetId = 3, Name = "Z590" },
-                new Chipsets() { ChipsetId = 4, Name = "Z490" },
-                new Chipsets() { ChipsetId = 5, Name = "Z390" },
-                new Chipsets() { ChipsetId = 6, Name = "Z270" },
-                new Chipsets() { ChipsetId = 7, Name = "Z170" },
-                new Chipsets() { ChipsetId = 8, Name = "AM4" },
-                new Chipsets() { ChipsetId = 9, Name = "AM5" },
-                new Chipsets() { ChipsetId = 10, Name = "Mobile" },
+                new Chipset() { ChipsetId = 1, Name = "Z790" },
+                new Chipset() { ChipsetId = 2, Name = "Z690" },
+                new Chipset() { ChipsetId = 3, Name = "Z590" },
+                new Chipset() { ChipsetId = 4, Name = "Z490" },
+                new Chipset() { ChipsetId = 5, Name = "Z390" },
+                new Chipset() { ChipsetId = 6, Name = "Z270" },
+                new Chipset() { ChipsetId = 7, Name = "Z170" },
+                new Chipset() { ChipsetId = 8, Name = "AM4" },
+                new Chipset() { ChipsetId = 9, Name = "AM5" },
+                new Chipset() { ChipsetId = 10, Name = "Mobile" },
 
             });
             modelBuilder.Entity<Processor>().HasData(new Processor[] 

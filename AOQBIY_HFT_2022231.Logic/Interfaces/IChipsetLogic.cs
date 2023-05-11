@@ -6,10 +6,10 @@ namespace AOQBIY_HFT_2022231.Logic.Interfaces
 {
     public interface IChipsetLogic
     {
-        void Create(Chipsets item);
+        void Create(Chipset item);
         void Delete(int id);
-        Chipsets Read(int id);
-        IEnumerable<Chipsets> ReadAll();
-        void Update(Chipsets item);
+        Chipset Read(int id);
+        IEnumerable<Chipset> ReadAll();
+        void Update(Chipset item);
     }
 }

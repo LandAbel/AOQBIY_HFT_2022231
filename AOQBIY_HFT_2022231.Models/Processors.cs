@@ -47,7 +47,7 @@ namespace AOQBIY_HFT_2022231.Models
         public int BrandId { get; set; }
         [JsonIgnore]
         [NotMapped]
-        public virtual Chipsets Chipset { get; set; }
+        public virtual Chipset Chipset { get; set; }
 
         [ForeignKey(nameof(Chipset))]
         public int ChipsetId { get; set; }

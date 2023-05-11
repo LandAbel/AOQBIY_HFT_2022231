@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace AOQBIY_HFT_2022231.Repository.Repos
 {
-    public class ChipsetRepository : Repository<Chipsets>, IRepository<Chipsets>
+    public class ChipsetRepository : Repository<Chipset>, IRepository<Chipset>
     {
         public ChipsetRepository(ProcessorListDbContext ctx) : base(ctx)
         {
         }
 
-        public override Chipsets Read(int id)
+        public override Chipset Read(int id)
         {
             return ctx.Chipsets.FirstOrDefault(t => t.ChipsetId == id);
         }
 
-        public override void Update(Chipsets item)
+        public override void Update(Chipset item)
         {
             var old = Read(item.ChipsetId);
             foreach (var prop in old.GetType().GetProperties())
