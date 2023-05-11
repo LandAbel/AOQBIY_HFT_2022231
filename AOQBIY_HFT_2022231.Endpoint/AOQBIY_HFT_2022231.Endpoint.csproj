@@ -5,6 +5,7 @@
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
 	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AOQBIY_HFT_2022231.Logic\AOQBIY_HFT_2022231.Logic.csproj" />
