@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace AOQBIY_HFT_2022231.Models
 {
     [Table("Chipset")]
-    public class Chipsets
+    public class Chipset
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,13 +24,17 @@ namespace AOQBIY_HFT_2022231.Models
         [NotMapped]
         public virtual ICollection<Processor> Processors { get; set; }
 
-        public Chipsets()
+        public Chipset()
         {
             this.Processors = new HashSet<Processor>();
         }
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
 
-/*        [ForeignKey(nameof(Processor))]
-        public int ProcessorId { get; set; }*/
+        /*        [ForeignKey(nameof(Processor))]
+                public int ProcessorId { get; set; }*/
 
     }
 }
