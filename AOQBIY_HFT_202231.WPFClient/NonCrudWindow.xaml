@@ -1,0 +1,117 @@
+﻿<Window x:Class="AOQBIY_HFT_202231.WPFClient.NonCrudWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AOQBIY_HFT_202231.WPFClient"
+        mc:Ignorable="d"
+        Title="Statistical Window" Height="500" Width="800" Background="LightGray" BorderBrush="Black" Foreground="Black" FontFamily="Arial" WindowStyle="ThreeDBorderWindow" >
+    <Window.Effect>
+        <DropShadowEffect/>
+    </Window.Effect>
+    <Window.Resources>
+        <Style x:Key="CustomHeaderStyle" TargetType="GridViewColumnHeader">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <!-- Add more setters as per your customization needs -->
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="211*"/>
+            <ColumnDefinition Width="189*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        <ListView x:Name="noncurdlista" Margin="0,10,0,20" ItemsSource="{Binding collection}" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFCDCDCD" HorizontalAlignment="Center" BorderBrush="Black" FontFamily="Arial" Foreground="Black" Width="390">
+            <ListView.View>
+                <!--<GridView>
+                    <GridViewColumn Header="Name" Width="130" HeaderContainerStyle="{StaticResource CustomHeaderStyle}" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Performance Core" HeaderContainerStyle="{StaticResource CustomHeaderStyle}" Width="115" DisplayMemberBinding="{Binding PerformanceCores}" />
+                    <GridViewColumn Header="Max Turbo Frequeny" HeaderContainerStyle="{StaticResource CustomHeaderStyle}" Width="120" DisplayMemberBinding="{Binding MaxTurboFrequency}" />
+                </GridView>-->
+                <GridView>
+                    <GridViewColumn Header="Name" Width="130" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"
+                                   HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Performance Core" Width="125" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding PerformanceCores}"
+                                   HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Max Turbo Frequeny" Width="125" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding MaxTurboFrequency, StringFormat={}{0:F1} GHz}"
+                                   HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="stats"  Margin="0,270,0,20" ItemsSource="{Binding collection2}" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FFCDCDCD" Foreground="Black" FontFamily="Arial" HorizontalAlignment="Left" HorizontalContentAlignment="Center" BorderBrush="#FF000205" Width="350">
+            <ListView.View>
+                <!--<GridView>
+                    <GridViewColumn Header="Brand" Width="100" HeaderContainerStyle="{StaticResource CustomHeaderStyle}" DisplayMemberBinding="{Binding Brand}" />
+                    <GridViewColumn Header="Average Core" Width="100" HeaderContainerStyle="{StaticResource CustomHeaderStyle}" DisplayMemberBinding="{Binding AvgCore}" />
+                    <GridViewColumn Header="Number of Processor" Width="150" HeaderContainerStyle="{StaticResource CustomHeaderStyle}" DisplayMemberBinding="{Binding Number}" />
+                </GridView>-->
+                <GridView>
+                    <GridViewColumn Header="Brand" Width="100" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Brand}"
+                                   HorizontalAlignment="Left"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Average Core" Width="100" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AvgCore, StringFormat={}{0:F1}}"
+                                   HorizontalAlignment="Left"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Number of Processor" Width="140" HeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Number}"
+                                   HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Column="1" Grid.Row="0"  >
+            <Label  Content="Choose one of the filter if you want to know more." FontFamily="Arial" FontWeight="Bold" Grid.Column="1"  HorizontalAlignment="Left" Margin="0,10,0,10" VerticalAlignment="Top" Height="24" Width="295"/>
+            <Button Margin="0,5,0,5" FontFamily="Arial" Background="LightBlue" Grid.Column="1"  x:Name="NONCRUD1" Content="Z790 Processors With 10 Core" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="1.191,0.422" Click="NONCRUD1_Click" Width="271" Height="18"/>
+            <Button Margin="0,5,0,5" FontFamily="Arial" Background="LightBlue" Grid.Column="1" HorizontalAlignment="Left" x:Name="NONCRUD2" Content="Intel Processors With More Than 30MB Cache" RenderTransformOrigin="1.191,0.422" Click="NONCRUD2_Click" Width="270" Height="18"/>
+            <Button Margin="0,5,0,5" FontFamily="Arial" Background="LightBlue" Grid.Column="1" x:Name="NONCRUD3" Content="Intel Processors With Integrated Graphics" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="1.191,0.422" Click="NONCRUD3_Click" Width="271" Height="18"/>
+            <Button Margin="0,5,0,5" FontFamily="Arial" Background="LightSalmon" Grid.Column="1" x:Name="NONCRUD5" Content="Max Turbo Frequeny More Than 4.9 From AMD" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="1.191,0.422" Click="NONCRUD5_Click" Width="271" Height="18"/>
+            <Button Margin="0,5,0,5" FontFamily="Arial" Background="LightGreen" Grid.Column="1" x:Name="NONCRUD6" Content="Mobile Processors With More Than 6 Core" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="1.191,0.422" Click="NONCRUD6_Click" Width="271" Height="18"/>
+            <Button Margin="0,5,0,5" FontFamily="Arial" Background="LightBlue" Grid.Column="1" x:Name="NONCRUD7" Content="Intel Processors With More Than 30MB Threads" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.191,0.422" Click="NONCRUD7_Click" Width="271" Height="18"/>
+            <Label  Margin="0,30,0,0" FontFamily="Arial" Background="#FFD4D478" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"   RenderTransformOrigin="0.5,0.618" Height="26" Width="350" FontWeight="Bold" FontSize="14">
+                <CheckBox x:Name="StatisitcsCHECK" Content="Statistics" HorizontalAlignment="right" VerticalAlignment="Center" Checked="CheckBox_Checked" IsChecked="False" Unchecked="CheckBox_Unchecked" BorderBrush="#FF050000" Foreground="Black" RenderTransformOrigin="0.5,0.5" />
+            </Label>
+        </StackPanel>
+    </Grid>
+</Window>
