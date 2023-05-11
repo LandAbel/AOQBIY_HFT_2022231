@@ -1,3 +1,4 @@
+using AOQBIY_HFT_2022231.Endpoint.Services;
 using AOQBIY_HFT_2022231.Logic.Classes;
 using AOQBIY_HFT_2022231.Logic.Interfaces;
 using AOQBIY_HFT_2022231.Models;
@@ -33,12 +34,15 @@ namespace AOQBIY_HFT_2022231.Endpoint
             services.AddSingleton<ProcessorListDbContext>();
 
             services.AddTransient<IRepository<Processor>, ProcessorRepository>();
-            services.AddTransient<IRepository<Chipsets>, ChipsetRepository>();
+            services.AddTransient<IRepository<Chipset>, ChipsetRepository>();
             services.AddTransient<IRepository<Brand>, BrandRepository>();
 
             services.AddTransient<IProcessorLogic, ProcessorLogic>();
             services.AddTransient<IChipsetLogic, ChipsetLogic>();
             services.AddTransient<IBrandLogic, BrandLogic>();
+
+
+            services.AddSignalR();
 
             services.AddControllers();
 
@@ -70,6 +74,7 @@ namespace AOQBIY_HFT_2022231.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
