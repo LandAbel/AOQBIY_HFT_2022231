@@ -1,0 +1,15 @@
+﻿#buttons {
+    display:flex;
+    width: 50%;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #buttons label, button, input {
+        margin: 10px;
+        padding: 7px;
+    }
+
+    #buttons label {
+        font-weight: bolder;
+    }
