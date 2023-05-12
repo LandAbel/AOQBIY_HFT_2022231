@@ -42,7 +42,10 @@ namespace AOQBIY_HFT_202231.WPFClient
                         Name = value.Name,
                         PerformanceCores = value.PerformanceCores,
                         MaxTurboFrequency = value.MaxTurboFrequency,
+                        TotalThreads=value.TotalThreads,
                         ProcessorId = value.ProcessorId,
+                        BrandId= value.BrandId,
+                        ChipsetId= value.ChipsetId,
                     };
                     OnPropertyChanged();
                     (DeleteProcessorCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -161,6 +164,9 @@ namespace AOQBIY_HFT_202231.WPFClient
                         Name = SelectedProcessor.Name,
                         PerformanceCores= SelectedProcessor.PerformanceCores,
                         MaxTurboFrequency= SelectedProcessor.MaxTurboFrequency,
+                        TotalThreads=SelectedProcessor.TotalThreads,
+                        BrandId= SelectedProcessor.BrandId,
+                        ChipsetId= SelectedProcessor.ChipsetId,
                     });
                 });
 
@@ -195,7 +201,9 @@ namespace AOQBIY_HFT_202231.WPFClient
                 {
                     Brands.Add(new Brand()
                     {
-                        Name = SelectedBrand.Name
+                        Name = SelectedBrand.Name,
+                        BrandId= SelectedBrand.BrandId,
+                        
                     });
                 });
 
@@ -229,7 +237,8 @@ namespace AOQBIY_HFT_202231.WPFClient
                 {
                     ChipsetsColl.Add(new Chipset()
                     {
-                        Name = SelectedChipsetsColl.Name
+                        Name = SelectedChipsetsColl.Name,
+                        ChipsetId= SelectedChipsetsColl.ChipsetId,
                     });
                 });
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AOQBIY_HFT_202231.WPFClient"
         mc:Ignorable="d"
-        Title="Processor Database" Height="500" Width="800" Background="#FFFFFCFC" BorderBrush="Black" Foreground="#FFC5BABA" FontFamily="Arial" Icon="/AppIcon.png">
+        Title="Processor Database" Height="560" Width="800" Background="#FFFFFCFC" BorderBrush="Black" Foreground="#FFC5BABA" FontFamily="Arial" Icon="/AppIcon.png">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -34,7 +34,7 @@
                         <Setter.Value>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding}" FontFamily="Arial" FontWeight="Bold" FontSize="16" Height="20" />
+                                    <TextBlock Text="{Binding}" FontFamily="Arial" FontWeight="Bold" FontSize="16" Height="16" />
                                 </StackPanel>
                             </DataTemplate>
                         </Setter.Value>
@@ -58,10 +58,10 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                     <StackPanel Grid.Column="2" Grid.ColumnSpan="1">
-                        <Label Content="Name of the processor" Background="#FFD7E6AD" Padding="10" BorderBrush="Black" />
-                        <TextBox Text="{Binding SelectedProcessor.Name}" Padding="10" Margin="0,0,0,30" Background="White" BorderBrush="Black"/>
+                        <Label Content="Name of the processor" Background="#FFD7E6AD" Padding="5" BorderBrush="Black" />
+                        <TextBox Text="{Binding SelectedProcessor.Name}" Padding="5" Margin="0,0,0,10" Background="White" BorderBrush="Black"/>
                         <!--<Label Content="Number of the Performance Cores" Background="LightBlue" Padding="10"/>-->
-                        <Label Padding="10" Background="#FFD7E6AD" BorderBrush="Black">
+                        <Label Padding="5" Background="#FFD7E6AD" BorderBrush="Black">
                             <Label.Content>
                                 <TextBlock>
                                     <Run Text="Number of the Performance Cores in "/>
@@ -69,9 +69,9 @@
                                 </TextBlock>
                             </Label.Content>
                         </Label>
-                        <TextBox Text="{Binding SelectedProcessor.PerformanceCores}" Padding="10" Margin="0,0,0,30" Background="White" BorderBrush="Black"/>
+                        <TextBox Text="{Binding SelectedProcessor.PerformanceCores}" Padding="5" Margin="0,0,0,10" Background="White" BorderBrush="Black"/>
                         <!--<Label Content="{Binding SelectedProcessor.Name, StringFormat={}{0:F0}Max Turbo Frequency }" Background="LightBlue" Padding="10"/>-->
-                        <Label Padding="10" Background="#FFD7E6AD" BorderBrush="Black">
+                        <Label Padding="5" Background="#FFD7E6AD" BorderBrush="Black">
                             <Label.Content>
                                 <TextBlock>
                         <Run Text="Max Turbo Frequency of "/>
@@ -79,7 +79,13 @@
                                 </TextBlock>
                             </Label.Content>
                         </Label>
-                        <TextBox Text="{Binding SelectedProcessor.MaxTurboFrequency, StringFormat={}{0:F1}}" Padding="10" Margin="0,0,0,30" Background="White" BorderBrush="Black"/>
+                        <TextBox Text="{Binding SelectedProcessor.MaxTurboFrequency, StringFormat={}{0:F1}}" Padding="5" Margin="0,0,0,10" Background="White" BorderBrush="Black"/>
+                        <Label Content="Number of Threads" Background="#FFD7E6AD" Padding="5" BorderBrush="Black" />
+                        <TextBox Text="{Binding SelectedProcessor.TotalThreads}" Padding="5" Margin="0,0,0,10" Background="White" BorderBrush="Black"/>
+                        <Label Content="Brand ID" Background="#FFD7E6AD" Padding="5" BorderBrush="Black" />
+                        <TextBox Text="{Binding SelectedProcessor.BrandId}" Padding="5" Margin="0,0,0,10" Background="White" BorderBrush="Black"/>
+                        <Label Content="Chipset ID" Background="#FFD7E6AD" Padding="5" BorderBrush="Black" />
+                        <TextBox Text="{Binding SelectedProcessor.ChipsetId}" Padding="5" Margin="0,0,0,10" Background="White" BorderBrush="Black"/>
                         <Button Content="Create Processor" Command="{Binding CreateProcessorCommand}" Margin="5" Padding="10" Background="#FF2ABBA4"/>
                         <Button Content="Delete Processor" Command="{Binding DeleteProcessorCommand}" Margin="5" Padding="10" Background="#FF2ABBA4"/>
                         <Button Content="Update Processor" Command="{Binding UpdateProcessorCommand}" Margin="5" Padding="10" Background="#FF2ABBA4"/>
@@ -100,13 +106,23 @@
                     <ListBox Grid.Column="0" ItemsSource="{Binding Brands}" SelectedItem="{Binding SelectedBrand}" Background="#FFC5BABA">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Label Content="{Binding Name}"/>
+                                <Label>
+                                    <Label.Content>
+                                        <TextBlock>
+                                            <Run Text="{Binding Name}"/>
+                                            <Run Text="   -   "/>
+                                            <Run Text="{Binding BrandId}"/>
+                                        </TextBlock>
+                                    </Label.Content>
+                                </Label>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                     <StackPanel Grid.Column="1">
                         <Label Content="Name of the brand" Background="LightBlue" Padding="10"/>
                         <TextBox Text="{Binding SelectedBrand.Name}" Padding="10" Margin="0,0,0,30"/>
+                        <Label Content="Brand ID" Background="LightBlue" Padding="10"/>
+                        <TextBox Text="{Binding SelectedBrand.BrandId}" Padding="10" Margin="0,0,0,30"/>
                         <Button Content="Create Brand" Command="{Binding CreateBrandCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
                         <Button Content="Delete Brand" Command="{Binding DeleteBrandCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
                         <Button Content="Update Brand" Command="{Binding UpdateBrandCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
@@ -126,13 +142,23 @@
                     <ListBox Grid.Column="0" ItemsSource="{Binding ChipsetsColl}" SelectedItem="{Binding SelectedChipsetsColl}" Background="#FFC5BABA">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Label Content="{Binding Name}"/>
+                                <Label>
+                                    <Label.Content>
+                                        <TextBlock>
+                                            <Run Text="{Binding Name}"/>
+                                            <Run Text="   -   "/>
+                                            <Run Text="{Binding ChipsetId}"/>
+                                        </TextBlock>
+                                    </Label.Content>
+                                </Label>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                     <StackPanel Grid.Column="1">
                         <Label Content="Name of the chipsets" Background="LightBlue" Padding="10"/>
                         <TextBox Text="{Binding SelectedChipsetsColl.Name}" Padding="10" Margin="0,0,0,30"/>
+                        <Label Content="Chipset ID" Background="LightBlue" Padding="10"/>
+                        <TextBox Text="{Binding SelectedChipsetsColl.ChipsetId}" Padding="10" Margin="0,0,0,30"/>
                         <Button Content="Create Chipset" Command="{Binding CreateChipsetsCollCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
                         <Button Content="Delete Chipset" Command="{Binding DeleteChipsetsCollCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
                         <Button Content="Update Chipset" Command="{Binding UpdateChipsetsCollCommand}" Margin="10" Padding="10" Background="#FF2ABBA4"/>
