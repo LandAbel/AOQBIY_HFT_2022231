@@ -1,0 +1,61 @@
+﻿table {
+    width: 70%;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px;
+}
+
+th {
+    background-color: lightblue;
+}
+button {
+    margin: 5px;
+    padding: 5px;
+}
+#ShowButtons {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#NONCRUD01FORM {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #NONCRUD01FORM label, button, input {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    #NONCRUD01FORM label {
+        font-weight: bolder;
+    }
+#NONCRUD07FORM {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #NONCRUD07FORM label, button, input {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    #NONCRUD07FORM label {
+        font-weight: bolder;
+    }
+
+table button {
+    padding: 1px;
+}
