@@ -1,4 +1,7 @@
-﻿let brandcoll = [];
+﻿function backtomain() {
+    window.location = "index.html";
+}
+let brandcoll = [];
 let connection;
 let brandIdToUpdate = -1;
 getdata();
@@ -23,7 +26,6 @@ function setupSignalR() {
     });
     start();
 }
-
 
 async function start() {
     try {
