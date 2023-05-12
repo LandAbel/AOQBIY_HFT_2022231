@@ -1,0 +1,53 @@
+﻿table {
+    width: 70%;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 5px;
+}
+
+th {
+    background-color: lightblue;
+}
+
+#ProcessorFormDiv {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #ProcessorFormDiv label, button, input {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    #ProcessorFormDiv label {
+        font-weight: bolder;
+    }
+
+#ProcessorUpdateFormDiv {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+    #ProcessorUpdateFormDiv label, button, input {
+        margin: 10px;
+        padding: 7px;
+    }
+
+    #ProcessorUpdateFormDiv label {
+        font-weight: bolder;
+    }
+
+table button {
+    padding: 1px;
+}
