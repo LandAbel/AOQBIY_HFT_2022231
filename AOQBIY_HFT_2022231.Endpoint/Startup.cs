@@ -68,7 +68,12 @@ namespace AOQBIY_HFT_2022231.Endpoint
             }
 
             app.UseRouting();
-
+            app.UseCors(x =>
+                x.AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:59923")
+            );
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
