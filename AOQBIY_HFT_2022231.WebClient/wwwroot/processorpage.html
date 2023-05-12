@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Processor Page</title>
+    <link href="processorstyle.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Processor Catalog</h1>
+    <button onclick="backtomain()">Back To Main</button>
+    <div id="ProcessorFormDiv">
+        <label>Processor Name</label>
+        <input type="text" id="ProcessorName" />
+        <label>Max Turbo Freq.</label>
+        <input type="text" id="ProcessorMaxTurboFreq" />
+        <label>Performance Cores</label>
+        <input type="text" id="ProcessorPerformanceCores" />
+        <label>Total Threads</label>
+        <input type="text" id="ProcessorTotalThreads" />
+        <label>Brand ID</label>
+        <input type="text" id="BrandId" />
+        <label>Chipset ID</label>
+        <input type="text" id="ChipsetId" />
+        <button type="button" onclick="create()">Add Processor</button>
+    </div>
+    <div id="ProcessorUpdateFormDiv">
+        <label>Processor Updater</label>
+        <label>Name</label>
+        <input type="text" id="ProcessorNameToUpdate" />
+        <label>Max Turbo Freq.</label>
+        <input type="text" id="ProcessorMaxTurboToUpdate" />
+        <label>Performance Cores</label>
+        <input type="text" id="ProcessorPerformanceCoresToUpdate" />
+        <label>Total Threads</label>
+        <input type="text" id="ProcessorTotalThreadsToUpdate" />
+        <label>Brand ID</label>
+        <input type="text" id="BrandIdToUpdate" />
+        <label>Chipset ID</label>
+        <input type="text" id="ChipsetIdToUpdate" />
+        <button type="button" onclick="update()">Update Processor</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Max Turbo Frequency</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="ResultAreAProcessor">
+        </tbody>
+    </table>
+    <script src="processorscript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+
+</body>
+</html>
