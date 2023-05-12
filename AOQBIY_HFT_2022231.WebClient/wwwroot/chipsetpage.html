@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chipset window</title>
+    <link href="chipset.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Chipset Catalog</h1>
+    <button onclick="backtomain()">Back To Main</button>
+    <div id="chipsetformdiv">
+        <label>Chipset Name</label>
+        <input type="text" id="chipsetname" />
+        <button type="button" onclick="create()">Add Chipset</button>
+    </div>
+    <div id="chipsetupdateformdiv">
+        <label>Chipset Updater</label>
+        <input type="text" id="chipsetnametoupdate" />
+        <button type="button" onclick="update()">Update Chipset</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultareachipset">
+        </tbody>
+    </table>
+    <script src="chipsetscript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+</body>
+</html>
