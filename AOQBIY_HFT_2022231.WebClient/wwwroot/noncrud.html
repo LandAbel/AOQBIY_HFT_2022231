@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>NONCRUD</title>
+    <link href="processorstyle.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Statistical Catalog</h1>
+    <button onclick="backtomain()">Back To Main</button>
+    <div id="ShowButtons">
+        <button onclick="getdata01()">Z790 Stats</button>
+        <button onclick="getdata02()">30+Mb Cache Stats</button>
+        <button onclick="getdata03()">Itegrated graphics Stats</button>
+        <button onclick="getdata04()">Max Turbo Freq More Then 4.9 Stats</button>
+        <button onclick="getdata05()">Mobile Processors With More Than 6 Core Stats</button>
+        <button onclick="getdata06()">Processors With More Than 30 Threads Stats</button>
+        <button onclick="getdata07()">Processors By Brands Stats</button>
+    </div>
+
+    <div id="NONCRUD01FORM">
+        <label>Statistics</label>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody id="resultNONCRUD01">
+            </tbody>
+        </table>
+    </div>
+    <div id="NONCRUD07FORM" style="display:none">
+        <label>Statistics</label>
+        <table>
+            <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Average Core</th>
+                    <th>Number</th>
+                </tr>
+            </thead>
+            <tbody id="resultNONCRUD07">
+            </tbody>
+        </table>
+    </div>
+    <script src="noncrudScript.js"></script>
+</body>
+</html>
