@@ -1,5 +1,5 @@
 ﻿function backtomain() {
-    window.location = "index.html";
+    window.location.assign("index.html");
 }
 let brandcoll = [];
 let connection;

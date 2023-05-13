@@ -1,5 +1,5 @@
 ﻿function backtomain() {
-    window.location = "index.html";
+    window.location.assign("index.html");
 }
 let chipsetcoll = [];
 let chipsetIdToUpdate = -1;
@@ -29,7 +29,7 @@ function setupSignalR() {
 
 async function start() {
     try {
-        await connection2.start();
+        await connection.start();
         console.log("SignalR Connected.");
     } catch (err) {
         console.log(err);
@@ -45,7 +45,6 @@ async function getdata() {
             display();
         });
 }
-
 function display() {
     document.getElementById('resultareachipset').innerHTML = "";
     chipsetcoll.forEach(t => {
