@@ -102,7 +102,7 @@ function update() {
         });
 }
 function remove(id) {
-    fetch('http://localhost:25922/Processor' + id, {
+    fetch('http://localhost:25922/Processor/' + id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

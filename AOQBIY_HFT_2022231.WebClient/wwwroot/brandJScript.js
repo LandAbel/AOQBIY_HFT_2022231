@@ -86,7 +86,7 @@ function update() {
         });
 }
 function remove(id) {
-    fetch('http://localhost:25922/Brand' + id, {
+    fetch('http://localhost:25922/Brand/' + id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

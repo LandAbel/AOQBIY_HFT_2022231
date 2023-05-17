@@ -85,7 +85,7 @@ function update() {
         });
 }
 function remove(id) {
-    fetch('http://localhost:25922/Chipset' + id, {
+    fetch('http://localhost:25922/Chipset/' + id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
