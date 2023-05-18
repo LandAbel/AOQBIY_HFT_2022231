@@ -34,17 +34,7 @@ async function getdata02() {
             display01();
         });
 }
-function display02() {
-    document.getElementById('NONCRUD07FORM').style.display = "none";
-    document.getElementById('NONCRUD01FORM').style.display = "initial";
-    document.getElementById('resultNONCRUD01').innerHTML = "";
-    noncrudcoll01.forEach(t => {
-        document.getElementById('resultNONCRUD01').innerHTML +=
-            "<tr><td>" + t.processorId + "</td><td>"
-            + t.name + "</td></tr>";
-        console.log(t);
-    })
-}
+
 async function getdata03() {
     await fetch('http://localhost:25922/Statistics/INTELProcessorsWithIntegratedGraph')
         .then(x => x.json())
@@ -54,17 +44,7 @@ async function getdata03() {
             display01();
         });
 }
-function display03() {
-    document.getElementById('NONCRUD07FORM').style.display = "none";
-    document.getElementById('NONCRUD01FORM').style.display = "initial";
-    document.getElementById('resultNONCRUD01').innerHTML = "";
-    noncrudcoll01.forEach(t => {
-        document.getElementById('resultNONCRUD01').innerHTML +=
-            "<tr><td>" + t.processorId + "</td><td>"
-            + t.name + "</td></tr>";
-        console.log(t);
-    })
-}
+
 async function getdata04() {
     await fetch('http://localhost:25922/Statistics/MaxTurboFreqMoreThen49ProcessorFromAMD')
         .then(x => x.json())
@@ -74,17 +54,7 @@ async function getdata04() {
             display01();
         });
 }
-function display04() {
-    document.getElementById('NONCRUD07FORM').style.display = "none";
-    document.getElementById('NONCRUD01FORM').style.display = "initial";
-    document.getElementById('resultNONCRUD01').innerHTML = "";
-    noncrudcoll01.forEach(t => {
-        document.getElementById('resultNONCRUD01').innerHTML +=
-            "<tr><td>" + t.processorId + "</td><td>"
-            + t.name + "</td></tr>";
-        console.log(t);
-    })
-}
+
 async function getdata05() {
     await fetch('http://localhost:25922/Statistics/MobileProcessorsWithMoreThan6Core')
         .then(x => x.json())
@@ -94,17 +64,7 @@ async function getdata05() {
             display01();
         });
 }
-function display05() {
-    document.getElementById('NONCRUD07FORM').style.display = "none";
-    document.getElementById('NONCRUD01FORM').style.display = "initial";
-    document.getElementById('resultNONCRUD01').innerHTML = "";
-    noncrudcoll01.forEach(t => {
-        document.getElementById('resultNONCRUD01').innerHTML +=
-            "<tr><td>" + t.processorId + "</td><td>"
-            + t.name + "</td></tr>";
-        console.log(t);
-    })
-}
+
 async function getdata06() {
     await fetch('http://localhost:25922/Statistics/IntelProcessorsWithMoreTh30Threads')
         .then(x => x.json())
@@ -114,17 +74,7 @@ async function getdata06() {
             display01();
         });
 }
-function display06() {
-    document.getElementById('NONCRUD07FORM').style.display = "none";
-    document.getElementById('NONCRUD01FORM').style.display = "initial";
-    document.getElementById('resultNONCRUD01').innerHTML = "";
-    noncrudcoll01.forEach(t => {
-        document.getElementById('resultNONCRUD01').innerHTML +=
-            "<tr><td>" + t.processorId + "</td><td>"
-            + t.name + "</td></tr>";
-        console.log(t);
-    })
-}
+
 async function getdata07() {
     await fetch('http://localhost:25922/Statistics/ProcessorsByBrands')
         .then(x => x.json())
