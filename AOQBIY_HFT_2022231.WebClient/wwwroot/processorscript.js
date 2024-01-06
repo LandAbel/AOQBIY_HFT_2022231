@@ -1,7 +1,10 @@
 ﻿function backtomain() {
     window.location.assign("index.html");
 }
-
+function addnewpro() {
+    document.getElementById('ProcessorFormDiv').style.display = "initial";
+    document.getElementById('ProcessorUpdateFormDiv').style.display = "none";
+}
 let processorcoll = [];
 let connection;
 let processorIdToUpdate = -1;
@@ -28,7 +31,6 @@ function setupSignalR() {
     start();
 }
 
-
 async function start() {
     try {
         await connection.start();
@@ -38,6 +40,7 @@ async function start() {
         setTimeout(start, 5000);
     }
 }
+
 async function getdata() {
     await fetch('http://localhost:25922/Processor')
         .then(x => x.json())
@@ -47,6 +50,12 @@ async function getdata() {
             display();
         });
 }
+
+/*function addnewpro() {
+    document.getElementById('ProcessorFormDiv').style.display = "initial";
+    document.getElementById('ProcessorUpdateFormDiv').style.display = "none";
+}*/
+
 function display() {
     document.getElementById('ResultAreAProcessor').innerHTML = "";
     processorcoll.forEach(t => {
@@ -58,6 +67,7 @@ function display() {
         console.log(t);
     })
 }
+
 function showupdate(id) {
     document.getElementById('ProcessorNameToUpdate').value = processorcoll.find(t => t['processorId'] == id)['name'];
     document.getElementById('ProcessorMaxTurboToUpdate').value = processorcoll.find(t => t['processorId'] == id)['maxTurboFrequency'];
@@ -68,6 +78,7 @@ function showupdate(id) {
     document.getElementById('ProcessorUpdateFormDiv').style.display = "flex";
     processorIdToUpdate = id;
 }
+
 function update() {
     document.getElementById('ProcessorUpdateFormDiv').style.display = "none";
     let namen = document.getElementById('ProcessorNameToUpdate').value;

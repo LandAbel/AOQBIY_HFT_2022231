@@ -7,8 +7,11 @@
 </head>
 <body>
     <h1>Processor Catalog</h1>
-    <button onclick="backtomain()">Back To Main</button>
-    <div id="ProcessorFormDiv">
+    <h2>
+        <button onclick="backtomain()">Back To Main</button>
+        <button onclick="addnewpro()">Add</button>
+    </h2>
+    <div id="ProcessorFormDiv" style="display:none">
         <label>Processor Name</label>
         <input type="text" id="ProcessorName" />
         <label>Max Turbo Freq.</label>
@@ -23,7 +26,7 @@
         <input type="text" id="ChipsetId" />
         <button type="button" onclick="create()">Add Processor</button>
     </div>
-    <div id="ProcessorUpdateFormDiv">
+    <div id="ProcessorUpdateFormDiv" style="display:none">
         <label>Processor Updater</label>
         <label>Name</label>
         <input type="text" id="ProcessorNameToUpdate" />
@@ -53,6 +56,5 @@
     </table>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="processorscript.js"></script>
-
 </body>
 </html>
